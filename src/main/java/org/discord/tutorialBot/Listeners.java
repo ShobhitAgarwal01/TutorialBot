@@ -4,6 +4,7 @@ import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
 import net.dv8tion.jda.api.entities.channel.middleman.MessageChannel;
+import net.dv8tion.jda.api.events.interaction.component.ButtonInteractionEvent;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.events.session.ReadyEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
@@ -11,10 +12,12 @@ import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.interactions.commands.build.OptionData;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Objects;
+
 public class Listeners extends ListenerAdapter {
 
-    @Override
-    public void onReady(@NotNull ReadyEvent event){
+//    @Override
+//    public void onReady(@NotNull ReadyEvent event){
 //        JDA jda = event.getJDA();
 //        for(Guild guild : jda.getGuilds()){
 //            for(TextChannel channel : guild.getTextChannels()){
@@ -38,5 +41,16 @@ public class Listeners extends ListenerAdapter {
 //        if(event.getAuthor().isBot()) return;
 //        MessageChannel channel = event.getChannel();
 //        channel.sendMessage(event.getMessage().getContentRaw()).queue();
+//    }
+
+    @Override
+    public void onButtonInteraction(@NotNull ButtonInteractionEvent event){
+        if(Objects.equals(event.getButton().getId(), "yes-button")){
+            event.reply("Ohh! Nice I do like it as well").queue();
+        } else if(Objects.equals(event.getButton().getId(), "no-button")){
+            event.reply("What Monster? You don't like Pizza?").queue();
+        }
+
+        event.getMessage().delete().queue();
     }
 }

@@ -4,6 +4,8 @@ import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.requests.GatewayIntent;
+import org.discord.tutorialBot.commads.Buttons;
+import org.discord.tutorialBot.commads.Embed;
 import org.discord.tutorialBot.commads.Sum;
 
 public class MainApplication {
@@ -12,6 +14,8 @@ public class MainApplication {
         jda.addEventListener(new Listeners());
         CommandManager managers = new CommandManager();
         managers.add(new Sum());
+        managers.add(new Embed());
+        managers.add(new Buttons());
         jda.addEventListener(managers);
         /*
         *   Two  types of Slash Commands, they're:
