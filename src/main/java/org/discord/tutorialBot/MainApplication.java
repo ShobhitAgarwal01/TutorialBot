@@ -20,6 +20,7 @@ public class MainApplication {
         managers.add(new Mute());
         managers.add(new Unmute());
         managers.add(new Unstaff());
+        managers.add(new Play());
         jda.addEventListener(managers);
         /*
         *   Two  types of Slash Commands, they're:
